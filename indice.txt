@@ -1,0 +1,55 @@
+CAPITOLO 0: TOLC-I
+
+CAPITOLO 1: MATEMATICA
+	Cap. 1.1: Aritmetica e Algebra
+		Cap. 1.1.1: proprietà e operazioni
+		Cap. 1.1.2: calcolo letterale - polinomi - eq di primo, secondo grado e riconducibili al secondo grado
+		Cap. 1.1.3: sistemi di equazioni
+		Cap. 1.1.4: valore assoluto, radicali, logaritmi ed esponenziali
+		Cap. 1.1.5: proprietà figure geometriche piane e solide
+	
+	Cap. 1.2: Geometria Analitica
+		Cap. 1.2.1: coordinate cartesiane e definizione di funzione
+		Cap. 1.2.2: geometria analitica - retta, parabola, circonferenza, ellisse e iperbole
+		Cap. 1.2.3: calcoli di intersezioni, rette tangenti-secanti ed equazioni parametriche
+		
+	Cap. 1.3: Trigonometria
+		Cap. 1.3.1: seno, coseno e tangente di un angolo
+		Cap. 1.3.2: formule di addizione, sottrazione, duplicazione e bisezione
+		Cap. 1.3.3: equazioni e disequazioni trigonometriche
+		Cap. 1.3.4: relazioni fra gli elementi di un triangolo
+		
+	Cap. 1.4: Statistica - cenni
+		Cap. 1.4.1: cenni - permutazioni, combinazioni, media, varianza e frequenza
+		Cap. 1.4.2: cenni - interpretazione di diagrammi di frequenza e istogrammi
+		
+CAPITOLO 2: FISICA
+	Cap. 2.1: Meccanica
+		Cap. 2.1.1: grandezze scalari e vettoriali
+		Cap. 2.1.2: misura di una grandezza fisica e unità di misura
+		Cap. 2.1.3: definizione di spostamento, velocità, accelerazione, massa, qdm, forza, lavoro e potenza
+		Cap. 2.1.4: leggi di Newton
+		Cap. 2.1.5: cenni di fluidodinamica
+	
+	Cap. 2.2: Termodinamica
+		Cap. 2.2.1: definizione di temperatura, calore, calore specifico, dilatazione e legge dei gas perfetti
+		Cap. 2.2.2: i principi della termodinamica
+		
+	Cap. 2.3: Ottica
+		Cap. 2.3.1: principi di ottica geometrica 
+		Cap. 2.3.2: cenni sui sistemi di lenti e apparecchi che ne fanno uso
+		
+	Cap. 2.4: Elettromagnetismo
+		Cap. 2.4.1: cenni di elettrostatica (Coulomb, campo elettrico e condensatori)
+		Cap. 2.4.2: cenni di magnetostatica (intensità di corrente, campo magnetico e legge di Ohm)
+		Cap. 2.4.3: cenni di radiazioni elettromagnetiche e la loro propagazione
+	
+CAPITOLO 3: CHIMICA
+	Cap. 3.1: Struttura della materia
+		Cap. 3.1.1: atomi, molecole e tavola periodica
+		Cap. 3.1.2: ioni vs molecole e proprietà di acqua e anidride carbonica
+	Cap. 3.2: Nomenclatura dei composti - tradizionale e IUPAC
+	Cap. 3.3: Stechiometria
+	Cap. 3.4: Soluzioni e pH
+	Cap. 3.5: Ossido-riduzioni
+	Cap. 3.6: Chimica organica - principali composti del carbonio
