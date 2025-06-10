@@ -1,7 +1,9 @@
+
+
 import marimo
 
-__generated_with = "0.12.4"
-app = marimo.App(width="full", auto_download=["html"])
+__generated_with = "0.13.0"
+app = marimo.App(width="full")
 
 
 @app.cell
@@ -57,7 +59,7 @@ def _(a, b, c, np, plt):
     g = plt.plot(x,y)
     g = plt.plot(asse_y, asse_y2, 'k')
     g = plt.plot(x, asse_x, 'k')
-    return asse_x, asse_y, asse_y2, g, lim_inf, lim_sup, x, y
+    return (g,)
 
 
 @app.cell
@@ -67,9 +69,20 @@ def _(g):
 
 
 @app.cell
-def _():
+def _(mo, plt):
     plt.plot([1,2,3],[4,5,6])
     mo.mpl.interactive(plt.gcf())
+    return
+
+
+@app.cell
+def _(mo):
+    mo.Html('<div><a href="../index.html">Torna indietro</a></div>')
+    return
+
+
+@app.cell
+def _():
     return
 
 

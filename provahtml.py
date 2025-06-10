@@ -1,0 +1,782 @@
+
+
+import marimo
+
+__generated_with = "0.13.0"
+app = marimo.App(width="medium")
+
+
+@app.cell
+def _():
+    import marimo as mo
+    return (mo,)
+
+
+@app.cell
+def _(mo):
+    mo.Html('''
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Indice</title>
+        <style>
+            /* Definizione delle variabili*/
+            :root {
+                --animation-time: 0.3s;
+            }
+
+            body {
+                background-color: var(--blue);
+            }
+
+            /* Stile generale */
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+
+            /* Stile per il contenitore dell'indice */
+            .indice {
+                width: 1000px;
+            }
+
+            /* Stile per le voci principali */
+            .voce {
+                background-color: #f4f4f4;
+                padding: 10px;
+                margin-bottom: 5px;
+                cursor: pointer;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                transition: background-color var(--animation-time) ease;
+            }
+
+            .voce-vuota {
+                background-color: #f4f4f4;
+                padding: 10px;
+                margin-bottom: 5px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                /* transition: background-color var(--animation-time) ease; */
+            }
+
+            /* Effetto hover sulle voci principali */
+            .voce:hover {
+                background-color: #e9ecef;
+            }
+
+            /* Aggiungi un'icona "+" o "-" per indicare l'espansione */
+            .voce::after {
+                content: "+";
+                float: right;
+                transition: transform var(--animation-time) ease;
+            }
+
+            .voce.attivo::after {
+                content: "-";
+                transform: rotate(180deg);
+            }
+
+            /* Stile per i contenuti espandibili */
+            .contenuto {
+                max-height: 0;
+                overflow: hidden;
+                padding: 0 10px;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-top: none;
+                border-radius: 0 0 5px 5px;
+                transition: max-height var(--animation-time) ease, padding var(--animation-time) ease;
+            }
+
+            .contenuto.attivo {
+                /* max-height: 500px; */
+                max-height: 1000px;
+                /* Imposta un valore sufficientemente alto per contenere tutto */
+                padding: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Indice</h1>
+        <div class="indice">
+            <!-- MENU PRINCIPALE TEORIA -->
+            <div class="voce" onclick="toggleContenuto('teoria')"><b>TEORIA</b></div>
+            <div id="teoria" class="contenuto">
+                <!-- CAPITOLO 0 -->
+                <div class="voce" onclick="toggleContenuto('teoria_contenuto0')">CAPITOLO 0: TOLC-I</div>
+                <div id="teoria_contenuto0" class="contenuto">
+                    <ul>
+                        <li>Cap. 0: Info generali sul TOLC-I</li>
+                    </ul>
+                </div>
+
+                <!-- CAPITOLO 1 -->
+                <div class="voce" onclick="toggleContenuto('teoria_contenuto1')">CAPITOLO 1: MATEMATICA</div>
+                <div id="teoria_contenuto1" class="contenuto">
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto1_1')">Cap. 1.1: Aritmetica e Algebra</div>
+                    <div id="teoria_contenuto1_1" class="contenuto">
+                        <ul>
+                            <li>Cap. 1.1.1: Proprietà e operazioni</li>
+                            <li>Cap. 1.1.2: Calcolo letterale - Polinomi - Equazioni di primo, secondo grado e riconducibili
+                                al secondo grado</li>
+                            <li>Cap. 1.1.3: Sistemi di equazioni e disequazioni</li>
+                            <li>Cap. 1.1.4: Valore assoluto, radicali, logaritmi ed esponenziali</li>
+                            <li>Cap. 1.1.5: Proprietà figure geometriche piane e solide</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto1_2')">Cap. 1.2: Geometria Analitica</div>
+                    <div id="teoria_contenuto1_2" class="contenuto">
+                        <ul>
+                            <li>Cap. 1.2.1: Coordinate cartesiane e definizione di funzione</li>
+                            <li>Cap. 1.2.2: Geometria analitica - retta, parabola, circonferenza, ellisse e iperbole</li>
+                            <li>Cap. 1.2.3: Calcoli di intersezioni, rette tangenti-secanti ed equazioni parametriche</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto1_3')">Cap. 1.3: Trigonometria</div>
+                    <div id="teoria_contenuto1_3" class="contenuto">
+                        <ul>
+                            <li>Cap. 1.3.1: Seno, coseno e tangente di un angolo</li>
+                            <li>Cap. 1.3.2: Formule di addizione, sottrazione, duplicazione e bisezione</li>
+                            <li>Cap. 1.3.3: Equazioni e disequazioni trigonometriche</li>
+                            <li>Cap. 1.3.4: Relazioni fra gli elementi di un triangolo</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto1_4')">Cap. 1.4: Statistica - Cenni</div>
+                    <div id="teoria_contenuto1_4" class="contenuto">
+                        <ul>
+                            <li>Cap. 1.4.1: Cenni - Permutazioni, combinazioni, media, varianza e frequenza</li>
+                            <li>Cap. 1.4.2: Cenni - Interpretazione di diagrammi di frequenza e istogrammi</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CAPITOLO 2 -->
+                <div class="voce" onclick="toggleContenuto('teoria_contenuto2')">CAPITOLO 2: FISICA</div>
+                <div id="teoria_contenuto2" class="contenuto">
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto2_1')">Cap. 2.1: Meccanica</div>
+                    <div id="teoria_contenuto2_1" class="contenuto">
+                        <ul>
+                            <li>Cap. 2.1.1: Grandezze scalari e vettoriali</li>
+                            <li>Cap. 2.1.2: Misura di una grandezza fisica e unità di misura</li>
+                            <li>Cap. 2.1.3: Definizione di spostamento, velocità, accelerazione, massa, quantità di moto,
+                                forza, lavoro e potenza</li>
+                            <li>Cap. 2.1.4: Leggi di Newton</li>
+                            <li>Cap. 2.1.5: Cenni di fluidodinamica</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto2_2')">Cap. 2.2: Termodinamica</div>
+                    <div id="teoria_contenuto2_2" class="contenuto">
+                        <ul>
+                            <li>Cap. 2.2.1: Definizione di temperatura, calore, calore specifico, dilatazione e legge dei
+                                gas perfetti</li>
+                            <li>Cap. 2.2.2: I principi della termodinamica</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto2_3')">Cap. 2.3: Ottica</div>
+                    <div id="teoria_contenuto2_3" class="contenuto">
+                        <ul>
+                            <li>Cap. 2.3.1: Principi di ottica geometrica</li>
+                            <li>Cap. 2.3.2: Cenni sui sistemi di lenti e apparecchi che ne fanno uso</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto2_4')">Cap. 2.4: Elettromagnetismo</div>
+                    <div id="teoria_contenuto2_4" class="contenuto">
+                        <ul>
+                            <li>Cap. 2.4.1: Cenni di elettrostatica (Coulomb, campo elettrico e condensatori)</li>
+                            <li>Cap. 2.4.2: Cenni di magnetostatica (Intensità di corrente, campo magnetico e legge di Ohm)
+                            </li>
+                            <li>Cap. 2.4.3: Cenni di radiazioni elettromagnetiche e la loro propagazione</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CAPITOLO 3 -->
+                <div class="voce" onclick="toggleContenuto('teoria_contenuto3')">CAPITOLO 3: CHIMICA</div>
+                <div id="teoria_contenuto3" class="contenuto">
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto3_1')">Cap. 3.1: Struttura della materia
+                    </div>
+                    <div id="teoria_contenuto3_1" class="contenuto">
+                        <ul>
+                            <li>Cap. 3.1.1: Atomi, molecole e tavola periodica</li>
+                            <li>Cap. 3.1.2: Ioni vs molecole e proprietà di acqua e anidride carbonica</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto3_2')">Cap. 3.2: Nomenclatura dei composti</div>
+                    <div id="teoria_contenuto3_2" class="contenuto">
+                        <ul>
+                            <li>Cap. 3.2: Nomenclatura tradizionale e nomenclatura IUPAC</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto3_3')">Cap. 3.3: Stechiometria</div>
+                    <div id="teoria_contenuto3_3" class="contenuto">
+                        <ul>
+                            <li>Cap. 3.3: Regole della stechiometria</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto3_4')">Cap. 3.4: Soluzioni</div>
+                    <div id="teoria_contenuto3_4" class="contenuto">
+                        <ul>
+                            <li>Cap. 3.4.1: Definizioni di acido e base</li>
+                            <li>Cap. 3.4.2: Soluzioni e pH</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto3_5')">Cap. 3.5: Ossido-riduzioni</div>
+                    <div id="teoria_contenuto3_5" class="contenuto">
+                        <ul>
+                            <li>Cap. 3.5: Bilanciamento delle reazioni redox</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto3_6')">Cap. 3.6: Chimica organica - cenni</div>
+                    <div id="teoria_contenuto3_6" class="contenuto">
+                        <ul>
+                            <li>Cap. 3.6: Principali composti del carbonio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MENU PRINCIPALE ESERCIZI -->
+            <div class="voce" onclick="toggleContenuto('esercizi')"><b>ESERCIZI</b></div>
+            <div id="esercizi" class="contenuto">
+                <!-- CAPITOLO 1 -->
+                <div class="voce" onclick="toggleContenuto('esercizi_contenuto1')">CAPITOLO 1: MATEMATICA</div>
+                <div id="esercizi_contenuto1" class="contenuto">
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto1_1')">Es. 1.1: Aritmetica e Algebra</div>
+                    <div id="esercizi_contenuto1_1" class="contenuto">
+                        <ul>
+                            <li>Es. 1.1.2: Calcolo letterale - Polinomi - Equazioni di primo, secondo grado e riconducibili
+                                al secondo grado</li>
+                            <li>Es. 1.1.3: Sistemi di equazioni e disequazioni</li>
+                            <li>Es. 1.1.4: Valore assoluto, radicali, logaritmi ed esponenziali</li>
+                            <li>Es. 1.1.5: Proprietà figure geometriche piane e solide</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto1_2')">Es. 1.2: Geometria Analitica</div>
+                    <div id="esercizi_contenuto1_2" class="contenuto">
+                        <ul>
+                            <li>Es. 1.2.1: Coordinate cartesiane e definizione di funzione</li>
+                            <li>Es. 1.2.2: Geometria analitica - retta, parabola, circonferenza, ellisse e iperbole</li>
+                            <li>Es. 1.2.3: Calcoli di intersezioni, rette tangenti-secanti ed equazioni parametriche</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto1_3')">Es. 1.3: Trigonometria</div>
+                    <div id="esercizi_contenuto1_3" class="contenuto">
+                        <ul>
+                            <li>Es. 1.3.1: Seno, coseno e tangente di un angolo</li>
+                            <li>Es. 1.3.2: Formule di addizione, sottrazione, duplicazione e bisezione</li>
+                            <li>Es. 1.3.3: Equazioni e disequazioni trigonometriche</li>
+                            <li>Es. 1.3.4: Relazioni fra gli elementi di un triangolo</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto1_4')">Es. 1.4: Statistica - Cenni</div>
+                    <div id="esercizi_contenuto1_4" class="contenuto">
+                        <ul>
+                            <li>Es. 1.4.1: Cenni - Permutazioni, combinazioni, media, varianza e frequenza</li>
+                            <li>Es. 1.4.2: Cenni - Interpretazione di diagrammi di frequenza e istogrammi</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CAPITOLO 2 -->
+                <div class="voce" onclick="toggleContenuto('esercizi_contenuto2')">CAPITOLO 2: FISICA</div>
+                <div id="esercizi_contenuto2" class="contenuto">
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto2_1')">Es. 2.1: Meccanica</div>
+                    <div id="esercizi_contenuto2_1" class="contenuto">
+                        <ul>
+                            <li>Es. 2.1.1: Grandezze scalari e vettoriali</li>
+                            <li>Es. 2.1.2: Misura di una grandezza fisica e unità di misura</li>
+                            <li>Es. 2.1.3: Definizione di spostamento, velocità, accelerazione, massa, quantità di moto,
+                                forza, lavoro e potenza</li>
+                            <li>Es. 2.1.4: Leggi di Newton</li>
+                            <li>Es. 2.1.5: Cenni di fluidodinamica</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto2_2')">Es. 2.2: Termodinamica</div>
+                    <div id="esercizi_contenuto2_2" class="contenuto">
+                        <ul>
+                            <li>Es. 2.2.1: Definizione di temperatura, calore, calore specifico, dilatazione e legge dei gas
+                                perfetti</li>
+                            <li>Es. 2.2.2: I principi della termodinamica</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto2_3')">Es. 2.3: Ottica</div>
+                    <div id="esercizi_contenuto2_3" class="contenuto">
+                        <ul>
+                            <li>Es. 2.3.1: Principi di ottica geometrica</li>
+                            <li>Es. 2.3.2: Cenni sui sistemi di lenti e apparecchi che ne fanno uso</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto2_4')">Es. 2.4: Elettromagnetismo</div>
+                    <div id="esercizi_contenuto2_4" class="contenuto">
+                        <ul>
+                            <li>Es. 2.4.1: Cenni di elettrostatica (Coulomb, campo elettrico e condensatori)</li>
+                            <li>Es. 2.4.2: Cenni di magnetostatica (Intensità di corrente, campo magnetico e legge di Ohm)
+                            </li>
+                            <li>Es. 2.4.3: Cenni di radiazioni elettromagnetiche e la loro propagazione</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CAPITOLO 3 -->
+                <div class="voce" onclick="toggleContenuto('esercizi_contenuto3')">CAPITOLO 3: CHIMICA</div>
+                <div id="esercizi_contenuto3" class="contenuto">
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto3_1')">Es. 3.1: Struttura della materia
+                    </div>
+                    <div id="esercizi_contenuto3_1" class="contenuto">
+                        <ul>
+                            <li>Es. 3.1.1: Atomi, molecole e tavola periodica</li>
+                            <li>Es. 3.1.2: Ioni vs molecole e proprietà di acqua e anidride carbonica</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto3_2')">Es. 3.2: Nomenclatura dei composti</div>
+                    <div id="esercizi_contenuto3_2" class="contenuto">
+                        <ul>
+                            <li>Es. 3.2: Nomenclatura tradizionale e nomenclatura IUPAC</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto3_3')">Es. 3.3: Stechiometria</div>
+                    <div id="esercizi_contenuto3_3" class="contenuto">
+                        <ul>
+                            <li>Es. 3.3: Regole della stechiometria</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto3_4')">Es. 3.4: Soluzioni</div>
+                    <div id="esercizi_contenuto3_4" class="contenuto">
+                        <ul>
+                            <li>Es. 3.4.1: Definizioni di acido e base</li>
+                            <li>Es. 3.4.2: Soluzioni e pH</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto3_5')">Es. 3.5: Ossido-riduzioni</div>
+                    <div id="esercizi_contenuto3_5" class="contenuto">
+                        <ul>
+                            <li>Es. 3.5: Bilanciamento delle reazioni redox</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto3_6')">Es. 3.6: Chimica organica - cenni</div>
+                    <div id="esercizi_contenuto3_6" class="contenuto">
+                        <ul>
+                            <li>Es. 3.6: Principali composti del carbonio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Funzione per espandere/collassare il contenuto con animazione
+            function toggleContenuto(id) {
+                const contenuto = document.getElementById(id);
+                const voce = contenuto.previousElementSibling;
+
+                if (!contenuto.classList.contains("attivo")) {
+                    contenuto.classList.add("attivo");
+                    voce.classList.add("attivo");
+                } else {
+                    contenuto.classList.remove("attivo");
+                    voce.classList.remove("attivo");
+                }
+            }
+        </script>
+    </body>
+
+    </html>''')
+    return
+
+
+@app.cell
+def _(mo):
+    hello_world = mo.Html("<h2>Hello, World</h2>")
+    mo.Html(
+    f'''
+    <h1>Hello, Universe!</h1>
+    {hello_world}
+    '''
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    ciao = ('''
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Indice</title>
+        <style>
+            /* Definizione delle variabili*/
+            :root {
+                --animation-time: 0.3s;
+            }
+
+            body {
+                background-color: var(--blue);
+            }
+
+            /* Stile generale */
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+
+            /* Stile per il contenitore dell'indice */
+            .indice {
+                width: 1000px;
+            }
+
+            /* Stile per le voci principali */
+            .voce {
+                background-color: #f4f4f4;
+                padding: 10px;
+                margin-bottom: 5px;
+                cursor: pointer;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                transition: background-color var(--animation-time) ease;
+            }
+
+            .voce-vuota {
+                background-color: #f4f4f4;
+                padding: 10px;
+                margin-bottom: 5px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                /* transition: background-color var(--animation-time) ease; */
+            }
+
+            /* Effetto hover sulle voci principali */
+            .voce:hover {
+                background-color: #e9ecef;
+            }
+
+            /* Aggiungi un'icona "+" o "-" per indicare l'espansione */
+            .voce::after {
+                content: "+";
+                float: right;
+                transition: transform var(--animation-time) ease;
+            }
+
+            .voce.attivo::after {
+                content: "-";
+                transform: rotate(180deg);
+            }
+
+            /* Stile per i contenuti espandibili */
+            .contenuto {
+                max-height: 0;
+                overflow: hidden;
+                padding: 0 10px;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-top: none;
+                border-radius: 0 0 5px 5px;
+                transition: max-height var(--animation-time) ease, padding var(--animation-time) ease;
+            }
+
+            .contenuto.attivo {
+                /* max-height: 500px; */
+                max-height: 1000px;
+                /* Imposta un valore sufficientemente alto per contenere tutto */
+                padding: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Indice</h1>
+        <div class="indice">
+            <!-- MENU PRINCIPALE TEORIA -->
+            <div class="voce" onclick="toggleContenuto('teoria')"><b>TEORIA</b></div>
+            <div id="teoria" class="contenuto">
+                <!-- CAPITOLO 0 -->
+                <div class="voce" onclick="toggleContenuto('teoria_contenuto0')">CAPITOLO 0: TOLC-I</div>
+                <div id="teoria_contenuto0" class="contenuto">
+                    <ul>
+                        <li>Cap. 0: Info generali sul TOLC-I</li>
+                    </ul>
+                </div>
+
+                <!-- CAPITOLO 1 -->
+                <div class="voce" onclick="toggleContenuto('teoria_contenuto1')">CAPITOLO 1: MATEMATICA</div>
+                <div id="teoria_contenuto1" class="contenuto">
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto1_1')">Cap. 1.1: Aritmetica e Algebra</div>
+                    <div id="teoria_contenuto1_1" class="contenuto">
+                        <ul>
+                            <li>Cap. 1.1.1: Proprietà e operazioni</li>
+                            <li>Cap. 1.1.2: Calcolo letterale - Polinomi - Equazioni di primo, secondo grado e riconducibili
+                                al secondo grado</li>
+                            <li>Cap. 1.1.3: Sistemi di equazioni e disequazioni</li>
+                            <li>Cap. 1.1.4: Valore assoluto, radicali, logaritmi ed esponenziali</li>
+                            <li>Cap. 1.1.5: Proprietà figure geometriche piane e solide</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto1_2')">Cap. 1.2: Geometria Analitica</div>
+                    <div id="teoria_contenuto1_2" class="contenuto">
+                        <ul>
+                            <li>Cap. 1.2.1: Coordinate cartesiane e definizione di funzione</li>
+                            <li>Cap. 1.2.2: Geometria analitica - retta, parabola, circonferenza, ellisse e iperbole</li>
+                            <li>Cap. 1.2.3: Calcoli di intersezioni, rette tangenti-secanti ed equazioni parametriche</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto1_3')">Cap. 1.3: Trigonometria</div>
+                    <div id="teoria_contenuto1_3" class="contenuto">
+                        <ul>
+                            <li>Cap. 1.3.1: Seno, coseno e tangente di un angolo</li>
+                            <li>Cap. 1.3.2: Formule di addizione, sottrazione, duplicazione e bisezione</li>
+                            <li>Cap. 1.3.3: Equazioni e disequazioni trigonometriche</li>
+                            <li>Cap. 1.3.4: Relazioni fra gli elementi di un triangolo</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto1_4')">Cap. 1.4: Statistica - Cenni</div>
+                    <div id="teoria_contenuto1_4" class="contenuto">
+                        <ul>
+                            <li>Cap. 1.4.1: Cenni - Permutazioni, combinazioni, media, varianza e frequenza</li>
+                            <li>Cap. 1.4.2: Cenni - Interpretazione di diagrammi di frequenza e istogrammi</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CAPITOLO 2 -->
+                <div class="voce" onclick="toggleContenuto('teoria_contenuto2')">CAPITOLO 2: FISICA</div>
+                <div id="teoria_contenuto2" class="contenuto">
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto2_1')">Cap. 2.1: Meccanica</div>
+                    <div id="teoria_contenuto2_1" class="contenuto">
+                        <ul>
+                            <li>Cap. 2.1.1: Grandezze scalari e vettoriali</li>
+                            <li>Cap. 2.1.2: Misura di una grandezza fisica e unità di misura</li>
+                            <li>Cap. 2.1.3: Definizione di spostamento, velocità, accelerazione, massa, quantità di moto,
+                                forza, lavoro e potenza</li>
+                            <li>Cap. 2.1.4: Leggi di Newton</li>
+                            <li>Cap. 2.1.5: Cenni di fluidodinamica</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto2_2')">Cap. 2.2: Termodinamica</div>
+                    <div id="teoria_contenuto2_2" class="contenuto">
+                        <ul>
+                            <li>Cap. 2.2.1: Definizione di temperatura, calore, calore specifico, dilatazione e legge dei
+                                gas perfetti</li>
+                            <li>Cap. 2.2.2: I principi della termodinamica</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto2_3')">Cap. 2.3: Ottica</div>
+                    <div id="teoria_contenuto2_3" class="contenuto">
+                        <ul>
+                            <li>Cap. 2.3.1: Principi di ottica geometrica</li>
+                            <li>Cap. 2.3.2: Cenni sui sistemi di lenti e apparecchi che ne fanno uso</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto2_4')">Cap. 2.4: Elettromagnetismo</div>
+                    <div id="teoria_contenuto2_4" class="contenuto">
+                        <ul>
+                            <li>Cap. 2.4.1: Cenni di elettrostatica (Coulomb, campo elettrico e condensatori)</li>
+                            <li>Cap. 2.4.2: Cenni di magnetostatica (Intensità di corrente, campo magnetico e legge di Ohm)
+                            </li>
+                            <li>Cap. 2.4.3: Cenni di radiazioni elettromagnetiche e la loro propagazione</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CAPITOLO 3 -->
+                <div class="voce" onclick="toggleContenuto('teoria_contenuto3')">CAPITOLO 3: CHIMICA</div>
+                <div id="teoria_contenuto3" class="contenuto">
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto3_1')">Cap. 3.1: Struttura della materia
+                    </div>
+                    <div id="teoria_contenuto3_1" class="contenuto">
+                        <ul>
+                            <li>Cap. 3.1.1: Atomi, molecole e tavola periodica</li>
+                            <li>Cap. 3.1.2: Ioni vs molecole e proprietà di acqua e anidride carbonica</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto3_2')">Cap. 3.2: Nomenclatura dei composti</div>
+                    <div id="teoria_contenuto3_2" class="contenuto">
+                        <ul>
+                            <li>Cap. 3.2: Nomenclatura tradizionale e nomenclatura IUPAC</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto3_3')">Cap. 3.3: Stechiometria</div>
+                    <div id="teoria_contenuto3_3" class="contenuto">
+                        <ul>
+                            <li>Cap. 3.3: Regole della stechiometria</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto3_4')">Cap. 3.4: Soluzioni</div>
+                    <div id="teoria_contenuto3_4" class="contenuto">
+                        <ul>
+                            <li>Cap. 3.4.1: Definizioni di acido e base</li>
+                            <li>Cap. 3.4.2: Soluzioni e pH</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto3_5')">Cap. 3.5: Ossido-riduzioni</div>
+                    <div id="teoria_contenuto3_5" class="contenuto">
+                        <ul>
+                            <li>Cap. 3.5: Bilanciamento delle reazioni redox</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('teoria_contenuto3_6')">Cap. 3.6: Chimica organica - cenni</div>
+                    <div id="teoria_contenuto3_6" class="contenuto">
+                        <ul>
+                            <li>Cap. 3.6: Principali composti del carbonio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MENU PRINCIPALE ESERCIZI -->
+            <div class="voce" onclick="toggleContenuto('esercizi')"><b>ESERCIZI</b></div>
+            <div id="esercizi" class="contenuto">
+                <!-- CAPITOLO 1 -->
+                <div class="voce" onclick="toggleContenuto('esercizi_contenuto1')">CAPITOLO 1: MATEMATICA</div>
+                <div id="esercizi_contenuto1" class="contenuto">
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto1_1')">Es. 1.1: Aritmetica e Algebra</div>
+                    <div id="esercizi_contenuto1_1" class="contenuto">
+                        <ul>
+                            <li>Es. 1.1.2: Calcolo letterale - Polinomi - Equazioni di primo, secondo grado e riconducibili
+                                al secondo grado</li>
+                            <li>Es. 1.1.3: Sistemi di equazioni e disequazioni</li>
+                            <li>Es. 1.1.4: Valore assoluto, radicali, logaritmi ed esponenziali</li>
+                            <li>Es. 1.1.5: Proprietà figure geometriche piane e solide</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto1_2')">Es. 1.2: Geometria Analitica</div>
+                    <div id="esercizi_contenuto1_2" class="contenuto">
+                        <ul>
+                            <li>Es. 1.2.1: Coordinate cartesiane e definizione di funzione</li>
+                            <li>Es. 1.2.2: Geometria analitica - retta, parabola, circonferenza, ellisse e iperbole</li>
+                            <li>Es. 1.2.3: Calcoli di intersezioni, rette tangenti-secanti ed equazioni parametriche</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto1_3')">Es. 1.3: Trigonometria</div>
+                    <div id="esercizi_contenuto1_3" class="contenuto">
+                        <ul>
+                            <li>Es. 1.3.1: Seno, coseno e tangente di un angolo</li>
+                            <li>Es. 1.3.2: Formule di addizione, sottrazione, duplicazione e bisezione</li>
+                            <li>Es. 1.3.3: Equazioni e disequazioni trigonometriche</li>
+                            <li>Es. 1.3.4: Relazioni fra gli elementi di un triangolo</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto1_4')">Es. 1.4: Statistica - Cenni</div>
+                    <div id="esercizi_contenuto1_4" class="contenuto">
+                        <ul>
+                            <li>Es. 1.4.1: Cenni - Permutazioni, combinazioni, media, varianza e frequenza</li>
+                            <li>Es. 1.4.2: Cenni - Interpretazione di diagrammi di frequenza e istogrammi</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CAPITOLO 2 -->
+                <div class="voce" onclick="toggleContenuto('esercizi_contenuto2')">CAPITOLO 2: FISICA</div>
+                <div id="esercizi_contenuto2" class="contenuto">
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto2_1')">Es. 2.1: Meccanica</div>
+                    <div id="esercizi_contenuto2_1" class="contenuto">
+                        <ul>
+                            <li>Es. 2.1.1: Grandezze scalari e vettoriali</li>
+                            <li>Es. 2.1.2: Misura di una grandezza fisica e unità di misura</li>
+                            <li>Es. 2.1.3: Definizione di spostamento, velocità, accelerazione, massa, quantità di moto,
+                                forza, lavoro e potenza</li>
+                            <li>Es. 2.1.4: Leggi di Newton</li>
+                            <li>Es. 2.1.5: Cenni di fluidodinamica</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto2_2')">Es. 2.2: Termodinamica</div>
+                    <div id="esercizi_contenuto2_2" class="contenuto">
+                        <ul>
+                            <li>Es. 2.2.1: Definizione di temperatura, calore, calore specifico, dilatazione e legge dei gas
+                                perfetti</li>
+                            <li>Es. 2.2.2: I principi della termodinamica</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto2_3')">Es. 2.3: Ottica</div>
+                    <div id="esercizi_contenuto2_3" class="contenuto">
+                        <ul>
+                            <li>Es. 2.3.1: Principi di ottica geometrica</li>
+                            <li>Es. 2.3.2: Cenni sui sistemi di lenti e apparecchi che ne fanno uso</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto2_4')">Es. 2.4: Elettromagnetismo</div>
+                    <div id="esercizi_contenuto2_4" class="contenuto">
+                        <ul>
+                            <li>Es. 2.4.1: Cenni di elettrostatica (Coulomb, campo elettrico e condensatori)</li>
+                            <li>Es. 2.4.2: Cenni di magnetostatica (Intensità di corrente, campo magnetico e legge di Ohm)
+                            </li>
+                            <li>Es. 2.4.3: Cenni di radiazioni elettromagnetiche e la loro propagazione</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CAPITOLO 3 -->
+                <div class="voce" onclick="toggleContenuto('esercizi_contenuto3')">CAPITOLO 3: CHIMICA</div>
+                <div id="esercizi_contenuto3" class="contenuto">
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto3_1')">Es. 3.1: Struttura della materia
+                    </div>
+                    <div id="esercizi_contenuto3_1" class="contenuto">
+                        <ul>
+                            <li>Es. 3.1.1: Atomi, molecole e tavola periodica</li>
+                            <li>Es. 3.1.2: Ioni vs molecole e proprietà di acqua e anidride carbonica</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto3_2')">Es. 3.2: Nomenclatura dei composti</div>
+                    <div id="esercizi_contenuto3_2" class="contenuto">
+                        <ul>
+                            <li>Es. 3.2: Nomenclatura tradizionale e nomenclatura IUPAC</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto3_3')">Es. 3.3: Stechiometria</div>
+                    <div id="esercizi_contenuto3_3" class="contenuto">
+                        <ul>
+                            <li>Es. 3.3: Regole della stechiometria</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto3_4')">Es. 3.4: Soluzioni</div>
+                    <div id="esercizi_contenuto3_4" class="contenuto">
+                        <ul>
+                            <li>Es. 3.4.1: Definizioni di acido e base</li>
+                            <li>Es. 3.4.2: Soluzioni e pH</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto3_5')">Es. 3.5: Ossido-riduzioni</div>
+                    <div id="esercizi_contenuto3_5" class="contenuto">
+                        <ul>
+                            <li>Es. 3.5: Bilanciamento delle reazioni redox</li>
+                        </ul>
+                    </div>
+                    <div class="voce" onclick="toggleContenuto('esercizi_contenuto3_6')">Es. 3.6: Chimica organica - cenni</div>
+                    <div id="esercizi_contenuto3_6" class="contenuto">
+                        <ul>
+                            <li>Es. 3.6: Principali composti del carbonio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Funzione per espandere/collassare il contenuto con animazione
+            function toggleContenuto(id) {
+                const contenuto = document.getElementById(id);
+                const voce = contenuto.previousElementSibling;
+
+                if (!contenuto.classList.contains("attivo")) {
+                    contenuto.classList.add("attivo");
+                    voce.classList.add("attivo");
+                } else {
+                    contenuto.classList.remove("attivo");
+                    voce.classList.remove("attivo");
+                }
+            }
+        </script>
+    </body>
+
+    </html>''')
+    mo.iframe(ciao)
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+if __name__ == "__main__":
+    app.run()
