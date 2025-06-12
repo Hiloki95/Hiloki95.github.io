@@ -7,13 +7,8 @@ app = marimo.App(width="medium")
 @app.cell
 def _():
     import marimo as mo
-    import sys
-    import os
-
-    assets_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..\\assets_imgs\\exercises\\es1\\es1-1-2'))
-    assets_list = os.listdir(assets_path)
-    assets_list = [assets_path + '\\' + item for item in assets_list]
-    return assets_list, mo
+    import requests
+    return mo, requests
 
 
 @app.cell
@@ -43,23 +38,23 @@ def _(mo):
 
 
 @app.cell
-def _(assets_list, exercise, switch0):
+def _(exercise, response0, switch0):
     # ESERCIZIO 1 --> INDICE 0
-    exercise(text=r'$1)$ Scomponi: $\quad x^3 + 3x^2 + x + 3$', results='$R: (x+3)\:(x^2+1)$', svol_img_path=assets_list[0], switch=switch0)
+    exercise(text=r'$1)$ Scomponi: $\quad x^3 + 3x^2 + x + 3$', results='$R: (x+3)\:(x^2+1)$', svol_img_path=response0, switch=switch0)
     return
 
 
 @app.cell
-def _(assets_list, exercise, switch1):
+def _(exercise, switch1, url1):
     # ESERCIZIO 2 --> INDICE 1
-    exercise(text=r'$2)$ Scomponi: $\quad -x^2 + 4x - 4$', results='$R: -(x-2)^2$', svol_img_path=assets_list[1], switch=switch1)
+    exercise(text=r'$2)$ Scomponi: $\quad -x^2 + 4x - 4$', results='$R: -(x-2)^2$', svol_img_path=url1, switch=switch1)
     return
 
 
 @app.cell
-def _(assets_list, exercise, switch2):
+def _(exercise, switch2, url2):
     # ESERCIZIO 3 --> INDICE 2
-    exercise(text=r'$3)$ Calcolare il valore di:  $\:\frac{127^2 - 73^2}{2}\:$', results='$R: 5400$', svol_img_path=assets_list[2], switch=switch2)
+    exercise(text=r'$3)$ Calcolare il valore di:  $\:\frac{127^2 - 73^2}{2}\:$', results='$R: 5400$', svol_img_path=url2, switch=switch2)
     return
 
 
@@ -75,9 +70,9 @@ def _(mo):
 
 
 @app.cell
-def _(assets_list, exercise, switch3):
+def _(exercise, switch3, url3):
     # ESERCIZIO 4 --> INDICE 3
-    exercise(text=r"$4)$ Risolvere l'equazione: $2(3x - 3) + 1 = 0$", results=r'$R: x = \frac{5}{6}$', svol_img_path=assets_list[3], switch=switch3)
+    exercise(text=r"$4)$ Risolvere l'equazione: $2(3x - 3) + 1 = 0$", results=r'$R: x = \frac{5}{6}$', svol_img_path=url3, switch=switch3)
     return
 
 
@@ -154,7 +149,20 @@ def _(exercise, switch1):
 
 @app.cell
 def _():
-    return
+    url0 = "https://raw.githubusercontent.com/Hiloki95/Hiloki95.github.io/main/assets_imgs/exercises/es1/es1-1-2/1.png"
+    url1 = "https://raw.githubusercontent.com/Hiloki95/Hiloki95.github.io/main/assets_imgs/exercises/es1/es1-1-2/2.png"
+    url2 = "https://raw.githubusercontent.com/Hiloki95/Hiloki95.github.io/main/assets_imgs/exercises/es1/es1-1-2/3.png"
+    url3 = "https://raw.githubusercontent.com/Hiloki95/Hiloki95.github.io/main/assets_imgs/exercises/es1/es1-1-2/4.png"
+    return url0, url1, url2, url3
+
+
+@app.cell
+def _(requests, url0, url1, url2, url3):
+    response0 = requests.get(url0).content
+    response1 = requests.get(url1).content
+    response2 = requests.get(url2).content
+    response3 = requests.get(url3).content
+    return (response0,)
 
 
 @app.cell
@@ -290,11 +298,6 @@ def _(mo):
 
         return mo.hstack([txt_stack, im], widths=dim, align="center")
     return (exercise,)
-
-
-@app.cell
-def _():
-    return
 
 
 if __name__ == "__main__":
